@@ -37,44 +37,29 @@ int SA(string str) {
 		c = str.at(i);
 		switch (state) {
 		case S: {
-			if ((c == '+') || (c == '-')) { state = A; }
-			else
-				if ((c >= '0') && (c <= '9')) { state = B; }
-				else
-					if ((c == ' ') || (c == '\0') || (c == '\n')) { state = S; }
-					else
-					{
-						value_error++; state = E;
-					}
+			if ((c == '+') || (c == '-')) { state = A; }else
+			if ((c >= '0') && (c <= '9')) { state = B; }else
+			if ((c == ' ') || (c == '\0') || (c == '\n')) { state = S; }else
+			{value_error++; state = E;}
 			break;
 		}
 		case A: {
-			if ((c >= '0') && (c <= '9')) { state = B; }
-			else
-				if ((c == ' ') || (c == '\0') || (c == '\n')) { state = S; }
-				else
-				{
-					value_error++; state = E;
-				}
+			if ((c >= '0') && (c <= '9')) { state = B; }else
+			if ((c == ' ') || (c == '\0') || (c == '\n')) { state = S; }else
+			{value_error++; state = E;}
 			break;
 		}
 		case B: {
-			if ((c >= '0') && (c <= '9')) { state = B; }
-			else
-				if ((c == ' ') || (c == '\0') || (c == '\n')) { state = S; }
-				else
-				{
-					value_error++; state = E;
-				}
+			if ((c >= '0') && (c <= '9')) { state = B; }else
+			if ((c == ' ') || (c == '\0') || (c == '\n')) { state = S; }else
+			{value_error++; state = E;}
 			break;
 		}
 		case E: {
 			state = S;
 			break;
 		}
-		default: {
-
-		}
+		default: {}
 		}
 	}
 	return value_error;
