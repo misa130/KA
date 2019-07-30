@@ -18,10 +18,11 @@ int main() {
 	setlocale(LC_ALL, "rus");
 
 	int value_error = 0;
-	string str;
+	string str = " gg +12 23 -34 45 + - ++ 2z";
+	
 	//while
 	cout << "введите целое число со знаком\n";
-	getline(cin, str);
+	//getline(cin, str);
 	cout << "вы ввели " << str << "\n";
 	value_error = SA(str);
 	if (value_error > 0) { cout << "в введенной строке " << value_error << " ошибок\n"; }
@@ -33,34 +34,37 @@ int main() {
 int SA(string str) {
 	int value_error = 0;
 	char c;
+	string buffer;
 	for (int i = 0; i < str.size(); i++) {
 		c = str.at(i);
 		switch (state) {
 		case S: {
-			if ((c == '+') || (c == '-')) { state = A; }else
-			if ((c >= '0') && (c <= '9')) { state = B; }else
+			buffer = "";
+			if (((c == '+') || (c == '-'))&&(i !=(str.size() -1))) { state = A; buffer = c; }else
+			if ((c >= '0') && (c <= '9')) { state = B; buffer = c;}else
 			if ((c == ' ') || (c == '\0') || (c == '\n')) { state = S; }else
-			{value_error++; state = E;}
+			{buffer += c; value_error++; state = S; cout << "\tS error : " <<buffer<< endl;}
 			break;
 		}
 		case A: {
-			if ((c >= '0') && (c <= '9')) { state = B; }else
-			if ((c == ' ') || (c == '\0') || (c == '\n')) { state = S; }else
-			{value_error++; state = E;}
+			if ((c >= '0') && (c <= '9')) { state = B; buffer += c;}else
+			{buffer += c; value_error++; state = S; cout << "\tA error : " << buffer << endl;}
 			break;
 		}
 		case B: {
-			if ((c >= '0') && (c <= '9')) { state = B; }else
-			if ((c == ' ') || (c == '\0') || (c == '\n')) { state = S; }else
-			{value_error++; state = E;}
+			if ((c >= '0') && (c <= '9')) { state = B; buffer += c;}else
+			if ((c == ' ') || (c == '\0') || (c == '\n')) { state = S; cout << buffer << endl;}else
+			{buffer += c; value_error++; state = S; cout << "\tB error : " << buffer << endl;}
 			break;
 		}
+		//E не используется, потому что пропускается символ c, находясь в этом состоянии (проще написать функцию обработки ошибок чем кейс)
 		case E: {
 			state = S;
 			break;
 		}
 		default: {}
 		}
+
 	}
 	return value_error;
 }

@@ -1,4 +1,3 @@
-﻿  pch.cpp
-  ka1_signed_integers.cpp
-c:\users\misas\source\repos\ka\ka1_signed_integers\ka1_signed_integers.cpp(36): warning C4018: <: несоответствие типов со знаком и без знака
+﻿  ka1_signed_integers.cpp
+c:\users\misas\source\repos\ka\ka1_signed_integers\ka1_signed_integers.cpp(38): warning C4018: <: несоответствие типов со знаком и без знака
   ka1_signed_integers.vcxproj -> C:\Users\misas\Source\Repos\KA\ka1_signed_integers\Debug\ka1_signed_integers.exe
